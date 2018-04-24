@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+   <h1 v-once>{{ title }}</h1>
+   <p>{{ sayHi() }} <a :href="href">Google</a></p>
+   <hr>
+   <p v-html="atag"></p>
+  </div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    title: 'Hello World!',
+    href: 'http://google.com',
+    atag: '<a href="http://google.com" target="_blank">Google</a>'
+  },
+  methods: {
+    sayHi: function() {
+      this.title = 'Hi!!!';
+      return this.title;
+    }
+  }
+});
+</script>
+</html>

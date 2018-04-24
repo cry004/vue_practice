@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+ <div id="app">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+   <p>{{num*2}}</p>
+   <input type="button" value="add count" @click="click(2, $event)">
+   <input type="button" value="add count" @click="num++">
+   <a :href="link">Link</a>
+   <p>{{ num *2 > 10 ? 'Greater now' : 'smaller'}}</p>
+   <p v-on:mouseover="update">
+     Coordinates: {{ x }}/{{ y }}
+     - <span v-on:mouseover.stop="">Dead spot</span>
+   </p>
+   <input type="text" v-on:keyup.enter.space="alertM">
+  </div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    num: 0,
+    x: 0,
+    y: 0,
+    link: 'http://google.com'
+  },
+  watch: {
+    num: function(value) {
+      var vm = this;
+      setTimeout(function() {
+        vm.num = 0;
+      }, 2000);
+    }
+  },
+  methods: {
+    click(step, event) {
+      this.num += step;
+    },
+    update(event) {
+      this.x = event.clientX;
+      this.y = event.clientY;
+    },
+    dummy(event) {
+      event.stopPropagation();
+    },
+    alertM: function() {
+      alert('Hi');
+    }
+  }
+});
+</script>
+</html>

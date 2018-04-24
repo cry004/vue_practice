@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+ <div id="app">
+    <ul>
+      <li v-for="(ingredient, i) in ingredients">{{ingredient}} ({{i}})</li>
+    </ul>
+    <hr>
+    <ul>
+      <li v-for="person in persons">
+        <div v-for="(value, key, index) in person" :key="ongredient">{{key}} : {{value}} ({{index}})</div>
+      </li>
+    </u>
+    <hr>
+    <span v-for="n in 10">{{n}},</span>
+    <hr>
+    <templat v-for="(ingredient, i) in ingredients">
+      <h1>{{ ingredient }}</h1>
+      <p>{{i}}</p>
+    </tempalte>
+</div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    ingredients: ['meat', 'fruit', 'cookies'],
+    persons: [
+      { name: 'Max', age: 27, color: 'red' },
+      { name: 'Max2', age: 7, color: 'yellow' },
+      { name: 'Max3', age: 2, color: 'blue' }
+    ]
+  }
+});
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+  <style>
+  .demo {
+    width: 100px;
+    height: 100px;
+    background: gray;
+    margin: 5px;
+    display: inline-block;
+    }
+    .red {
+      background: red;
+    }
+    .green {
+      background: green
+    }
+    .blue {
+      background: blue
+    }
+    .yellow {
+      background: yellow
+    }
+  </style>
+</head>
+<body>
+ <div id="app">
+   <div class="demo" @click="attachRed = !attachRed" :class="divClass"></div>
+   <div class="demo" @click="attachRed = !attachRed" :class="{green: attachRed}"></div>
+   <div class="demo" :class="[color,{red: attachRed}]"></div>
+   <hr>
+   <input type="text" v-model="color">
+  </div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    attachRed: false,
+    color: 'blue'
+  },
+  computed: {
+    divClass: function() {
+      return {
+        red: this.attachRed,
+        green: !this.attachRed
+      };
+    }
+  }
+});
+</script>
+</html>
