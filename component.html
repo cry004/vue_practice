@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+ <div id="app">
+   same data object
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+    <hr>
+    different data object in memory
+    <my-cmp2></my-cmp2>
+    <my-cmp2></my-cmp2>
+  </div>
+  <script>
+  var data = {
+  status: 'Critical'
+};
+Vue.component('my-cmp', {
+  data: function() {
+    return data; //return the object decleard outside
+  },
+  template:
+    '<p>Server Status: {{ status }}(<button @click="changeStatus">Change</button>)</p>',
+  methods: {
+    changeStatus: function() {
+      this.status = 'Normal';
+    }
+  }
+});
+Vue.component('my-cmp2', {
+  data: function() {
+    return { status: 'Critical' }; //return an object directly
+  },
+  template:
+    '<p>Server Status: {{ status }}(<button @click="changeStatus">Change</button>)</p>',
+  methods: {
+    changeStatus: function() {
+      this.status = 'Normal';
+    }
+  }
+});
+new Vue({
+  el: '#app'
+});
+</script>
+</body>
+</html>
