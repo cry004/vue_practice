@@ -10,7 +10,8 @@
 
 <script>
   import Header from './components/Shared/Header.vue';
-  import Servers from './components/Servers/Servers.vue';
+  //import Servers from './components/Servers/Servers.vue';
+  import Servers from './components/Servers_eventBus/Servers.vue';
   import Footer from './components/Shared/Footer.vue';
 
   export default {
