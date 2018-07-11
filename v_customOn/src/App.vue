@@ -6,6 +6,11 @@
                 <!-- Exercise -->
                 <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
                 <button v-customOn:click="clicked" class="btn btn-primary">Click Me</button>
+                <hr>
+                <div style="width: 100px; height: 100px; background-color: lightgreen"
+                  v-customOn:mouseenter = "mouseEnter"
+                  v-customOn:mouseleave = "mouseLeave"
+                ></div>
             </div>
         </div>
     </div>
@@ -28,6 +33,12 @@ export default {
   methods: {
     clicked() {
       alert('I was clicked ! ');
+    },
+    mouseEnter() {
+      console.log('mouse enter!');
+    },
+    mouseLeave() {
+      console.log('mouse leave!');
     }
   }
 };
