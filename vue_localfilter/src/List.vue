@@ -1,7 +1,6 @@
 <template>
     <div>
       <h1>Filters & Mixins</h1>
-      <p>{{ text | toUppercase | to-lowercase }}</p>
       <hr>
       <input v-model="filterText">
       <ul>
