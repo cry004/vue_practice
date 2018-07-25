@@ -12,7 +12,7 @@
                 <button class="btn btn-primary" @click="show = !show">Show Alert </button>
                 <br/><br/>
                 <transition :name="alertAnimation">
-                  <div class="alert alert-info" v-if="show">This is some info</div>
+                  <div class="alert alert-info" v-show="show">This is some info</div>
                 </transition>
                 <transition name="slide" appear>
                   <div class="alert alert-info" v-if="show">This is some info</div>
@@ -22,6 +22,10 @@
                   enter-active-class="animated bounce"
                   leave-active-class="animated shake">
                   <div class="alert alert-info" v-if="show">This is some info</div>
+                </transition>
+                <transition :name="alertAnimation" mode="out-in">
+                  <div class="alert alert-info" v-if="show" key="info">This is some info</div>
+                  <div class="alert alert-warning" v-else key="warning ">This is some Warning</div>
                 </transition>
             </div>
         </div>
