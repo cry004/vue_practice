@@ -27,6 +27,22 @@
                   <div class="alert alert-info" v-if="show" key="info">This is some info</div>
                   <div class="alert alert-warning" v-else key="warning ">This is some Warning</div>
                 </transition>
+                <hr>
+                <button class="btn btn-primary" @click="load = !load">road/remove element</button>
+                <br><br>
+                <transition
+                  @before-enter="beforeEnter"
+                  @enter="enter"
+                  @after-enter="afterenter"
+                  @enter-cancelled="entercancelled"
+
+                  @before-leave="beforeleave"
+                  @leave="leave"
+                  @after-leave="afterleave"
+                  @leave-calcelled="leavecancelled"
+                  :css="false">
+                  <div style="width: 100px; height: 100px; background: lightgreen" v-if="load"></div>
+                </transition>
             </div>
         </div>
     </div>
@@ -37,8 +53,58 @@ export default {
   data() {
     return {
       show: false,
-      alertAnimation: 'fade'
+      load: true,
+      alertAnimation: 'fade',
+      elementWidth: 100
     };
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log('beforeEnter');
+      this.elementWidth = 100;
+      el.style.width = this.elementWidth + 'px';
+    },
+    enter(el, done) {
+      console.log('Enter');
+      let round = 1;
+      const interval = setInterval(() => {
+        el.style.width = this.elementWidth + round * 10 + 'px';
+        round++;
+        if (round > 20) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
+    },
+    afterenter(el) {
+      console.log('afterenter');
+    },
+    entercancelled(el) {
+      console.log('entercancelled');
+    },
+    beforeleave(el) {
+      console.log('entercancelled');
+      this.elementWidth = 300;
+      el.style.width = this.elementWidth + 'px';
+    },
+    leave(el, done) {
+      console.log('leave');
+      let round = 1;
+      const interval = setInterval(() => {
+        el.style.width = this.elementWidth - round * 10 + 'px';
+        round++;
+        if (round > 20) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
+    },
+    afterleave(el) {
+      console.log('afterleave');
+    },
+    leavecancelled(el) {
+      console.log('leavecancelled');
+    }
   }
 };
 </script>
