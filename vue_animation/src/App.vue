@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       show: false,
-      load: true,
+      load: false,
       alertAnimation: 'fade',
       elementWidth: 100
     };
@@ -70,7 +70,7 @@ export default {
       const interval = setInterval(() => {
         el.style.width = this.elementWidth + round * 10 + 'px';
         round++;
-        if (round > 20) {
+        if (round > 70) {
           clearInterval(interval);
           done();
         }
@@ -83,7 +83,7 @@ export default {
       console.log('entercancelled');
     },
     beforeleave(el) {
-      console.log('entercancelled');
+      console.log('beforeleave');
       this.elementWidth = 300;
       el.style.width = this.elementWidth + 'px';
     },
