@@ -55,7 +55,14 @@
                   <button class="btn btn-primary" @click="addItem">Add Item</button>
                   <br><br>
                   <ul class="list-group">
-                    <li class="list-group-item" v-for="(num, index) in numbers" @click="removeItem(index)" style="cursor: pointer">{{num}}</li>
+                    <transition-group name="slide">
+                      <li class="list-group-item"
+                      v-for="(num, index) in numbers"
+                      @click="removeItem(index)"
+                      style="cursor: pointer"
+                      :key="num"
+                      >{{num}}</li>
+                    </transition-group>
                   </ul>
             </div>
         </div>
@@ -162,6 +169,12 @@ export default {
 }
 .slide-leave-active {
   animation: slide-out 1s ease-out forwards;
+  transition: opacity 1s;
+  opacity: 0;
+  position: absolute;
+}
+.slide-move {
+  transition: transform 1s;
 }
 @keyframes slide-in {
   from {
