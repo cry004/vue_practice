@@ -9,9 +9,9 @@
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input class="form-control" type="text" v-emodel="user.rmail">
+                  <input class="form-control" type="text" v-model="user.rmail">
                 </div>
-                <button class="btn btn-primary">submit!!</button>
+                <button class="btn btn-primary" @click="submit">submit!!</button>
             </div>
         </div>
     </div>
@@ -21,9 +21,19 @@
 export default {
   data() {
     return {
-      username: '',
-      email: ''
+      user: {
+        username: '',
+        email: ''
+      }
     };
+  },
+  methods: {
+    submit() {
+      this.$http.post(
+        'https://vue-httptest-f32e3.firebaseio.com/data.json',
+        this.user
+      );
+    }
   }
 };
 </script>
