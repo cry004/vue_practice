@@ -9,9 +9,14 @@
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input class="form-control" type="text" v-model="user.rmail">
+                  <input class="form-control" type="text" v-model="user.email">
                 </div>
-                <button class="btn btn-primary" @click="submit">submit!!</button>
+                <button class="btn btn-primary" @click="submit">Submit!!</button>
+                <hr>
+                <button class="btn btn-primary" @click="fetchdata">Get data!!</button>
+                <ul class="list-group">
+                  <li class="list-group-item" v-for="u in users">{{u.username}} - {{u.email}}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -24,15 +29,34 @@ export default {
       user: {
         username: '',
         email: ''
-      }
+      },
+      users: []
     };
   },
   methods: {
     submit() {
-      this.$http.post(
-        'https://vue-httptest-f32e3.firebaseio.com/data.json',
-        this.user
+      this.$http.post('', this.user).then(
+        resp => {
+          console.log(resp);
+        },
+        error => {
+          console.log(error);
+        }
       );
+    },
+    fetchdata() {
+      this.$http
+        .get('')
+        .then(responese => {
+          return responese.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data) {
+            resultArray.push(data[key]);
+          }
+          this.users = resultArray;
+        });
     }
   }
 };
