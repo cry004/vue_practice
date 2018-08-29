@@ -18,6 +18,16 @@ export default {
         hash: '#data'
       }
     };
+  },
+  beforeRouteEnter(to, from, next) {
+    // if (false) {
+    //   next();
+    // } else {
+    //   next(false);
+    // }
+    next(vm => {
+      vm.link;
+    });
   }
 };
 </script>
